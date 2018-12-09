@@ -1,4 +1,4 @@
-# gravitygun
+# gravitygun v2.5
 
 Licenses: code and media CC0
 
