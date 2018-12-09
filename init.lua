@@ -8,19 +8,31 @@ enable_gravitygun_owerloaded_requires_privilege=true
 
 minetest.register_privilege("gravitygun", {
 	description = "Gravitygun privilege",
-	give_to_singleplayer= true})
+	give_to_singleplayer=true
+})
 minetest.register_privilege("gravitygun2", {
 	description = "Gravitygun overloaded privilege",
-	give_to_singleplayer= true})
+	give_to_singleplayer=true
+})
+
 dofile(minetest.get_modpath("gravitygun") .. "/entitys.lua")
 dofile(minetest.get_modpath("gravitygun") .. "/craft.lua")
 gravitygun_slowdown={}
 
 if enable_gravitygun_owerloaded then
-minetest.register_tool("gravitygun:gun3", {
-	description = "Gravitygun basic (overloaded)",
+minetest.register_node("gravitygun:gun3", {
+	description = "Gravitygun (overloaded)",
 	range = 5,
-	inventory_image = "gravitygun_gun3.png",
+	drawtype="mesh",
+	mesh="gravitygun_gun_wielded.obj",
+	paramtype="light",
+	paramtype2="facedir",
+	sunlight_propagates = true,
+	tiles={"gravitygun_gtex3.png"},
+	wield_scale = {x=2, y=2, z=2},
+	on_place = function(itemstack, placer, pointed_thing)
+		return itemstack
+	end,
 		on_use = function(itemstack, user, pointed_thing)
 			if enable_gravitygun_owerloaded_requires_privilege and minetest.check_player_privs(user:get_player_name(), {gravitygun2=true})==false then
 				minetest.chat_send_player(user:get_player_name(), "You need the gravitygun2 privilege to use this")
@@ -118,7 +130,16 @@ if enable_gravitygun==true then
 minetest.register_tool("gravitygun:gun2", {
 	description = "Gravitygun",
 	range = 10,
-	inventory_image = "gravitygun_gun2.png",
+	drawtype="mesh",
+	mesh="gravitygun_gun_wielded.obj",
+	paramtype="light",
+	paramtype2="facedir",
+	sunlight_propagates = true,
+	tiles={"gravitygun_gtex2.png"},
+	wield_scale = {x=2, y=2, z=2},
+	on_place = function(itemstack, placer, pointed_thing)
+		return itemstack
+	end,
 	on_use = function(itemstack, user, pointed_thing)
 		if enable_gravitygun_requires_privilege and minetest.check_player_privs(user:get_player_name(), {gravitygun=true})==false then
 			minetest.chat_send_player(user:get_player_name(), "You need the gravitygun privilege to use this")
@@ -133,7 +154,16 @@ if enable_gravitygun_basic then
 minetest.register_tool("gravitygun:gun1", {
 	description = "Gravitygun (basic)",
 	range = 5,
-	inventory_image = "gravitygun_gun1.png",
+	drawtype="mesh",
+	mesh="gravitygun_gun_wielded.obj",
+	paramtype="light",
+	paramtype2="facedir",
+	sunlight_propagates = true,
+	tiles={"gravitygun_gtex1.png"},
+	wield_scale = {x=2, y=2, z=2},
+	on_place = function(itemstack, placer, pointed_thing)
+		return itemstack
+	end,
 	on_use = function(itemstack, user, pointed_thing)
 		gravitygun_onuse(itemstack, user, pointed_thing,1)
 			return itemstack
