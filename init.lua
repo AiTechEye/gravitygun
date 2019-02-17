@@ -127,7 +127,7 @@ minetest.register_node("gravitygun:gun3", {
 end
 
 if enable_gravitygun==true then
-minetest.register_tool("gravitygun:gun2", {
+minetest.register_node("gravitygun:gun2", {
 	description = "Gravitygun",
 	range = 10,
 	drawtype="mesh",
@@ -151,7 +151,7 @@ minetest.register_tool("gravitygun:gun2", {
 })
 end
 if enable_gravitygun_basic then
-minetest.register_tool("gravitygun:gun1", {
+minetest.register_node("gravitygun:gun1", {
 	description = "Gravitygun (basic)",
 	range = 5,
 	drawtype="mesh",
